@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <bcm2835.h>
-#include "LTC68042_bcm.h"
+#include "ltc68042_bcm.h"
 
 #define output_low(PIN) bcm2835_gpio_write(PIN, LOW)
 #define output_high(PIN) bcm2835_gpio_write(PIN, HIGH)
