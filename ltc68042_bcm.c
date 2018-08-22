@@ -836,7 +836,7 @@ uint16_t pec15_calc(uint8_t len, uint8_t *data)
  
 */
 void spi_write_array(uint8_t len, // Option: Number of bytes to be written on the SPI port
-					 uint8_t data[] //Array of bytes to be written on the SPI port
+					 uint8_t *data //Array of bytes to be written on the SPI port
 					 )
 {
   for(uint8_t i = 0; i < len; i++)
@@ -856,7 +856,7 @@ void spi_write_array(uint8_t len, // Option: Number of bytes to be written on th
 
 void spi_write_read(uint8_t tx_Data[],//array of data to be written on SPI port 
 					uint8_t tx_len, //length of the tx data arry
-					uint8_t rx_data[],//Input: array that will store the data read by the SPI port
+					uint8_t *rx_data,//Input: array that will store the data read by the SPI port
 					uint8_t rx_len //Option: number of bytes to be read from the SPI port
 					)
 {
@@ -869,7 +869,7 @@ void spi_write_read(uint8_t tx_Data[],//array of data to be written on SPI port
   for(uint8_t i = 0; i < rx_len; i++)
   {
     rx_data[i] = bcm2835_spi_transfer(0xFF);
-	printf("Read back from SPI: 0x%02X.\n", rX_data[i]);
+	printf("Read back from SPI: 0x%02X.\n", rx_data[i]);
   }
 }
 
