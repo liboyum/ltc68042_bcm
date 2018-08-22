@@ -24,16 +24,16 @@ int main(int argc, char **argv)
       return 1;
     }
 	
-	LTC6804_initialize();
-	LTC6804_adcv();
-	rdError = LTC6804_rdcv(0, TOTAL_IC, cell_codes);
-	if(rdError == -1){
-		printf("A PEC error was detected in the received data\n");
-	}
-	else{
-		print_voltage();
-	}
-	bcm2835_spi_end();
+    LTC6804_initialize();
+    LTC6804_adcv();
+    rdError = LTC6804_rdcv(0, TOTAL_IC, cell_codes);
+    if(rdError == -1){
+	printf("A PEC error was detected in the received data\n");
+    }
+    else{
+	print_voltage();
+    }
+    bcm2835_spi_end();
     bcm2835_close();
     return 0;
 }
