@@ -1,4 +1,6 @@
 #include <stdint.h>
+#include <stdlib.h>
+#include <stdio.n>
 #include <bcm2835.h>
 #include "ltc68042_bcm.h"
 
