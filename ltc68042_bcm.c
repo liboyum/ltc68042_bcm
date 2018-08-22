@@ -222,7 +222,6 @@ uint8_t LTC6804_rdcv(uint8_t reg,
         {														   		  // once for each cell voltages in the register 
           parsed_cell = cell_data[data_counter] + (cell_data[data_counter + 1] << 8);
           cell_codes[current_ic][current_cell  + ((cell_reg - 1) * CELL_IN_REG)] = parsed_cell;
-	  printf("Voltage: %d\n",parsed_cell);
           data_counter = data_counter + 2;
         }
 		//a.iii
