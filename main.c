@@ -27,6 +27,7 @@ int main(int argc, char **argv)
 	
     LTC6804_initialize();
     LTC6804_adcv();
+    LTC6804_adax();
     rdError = LTC6804_rdcv(0, TOTAL_IC, cell_codes);
     LTC6804_rdaux(0, TOTAL_IC, aux_codes);
     if(rdError == -1){
