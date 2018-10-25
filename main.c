@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     else{
 	for(int i=0; i<12; i++)
 	{
-	  printf("The voltage is %f\n", cell_codes[i]*0.0001);
+	  printf("The voltage is %f\n", cell_codes[i]);
 	}
     }
     bcm2835_delay(500);
