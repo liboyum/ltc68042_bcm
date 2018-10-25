@@ -22,18 +22,8 @@ int main(int argc, char **argv)
       return 1;
     }
     LTC6804_initialize();
-    for(int i = 0; i<TOTAL_IC;i++)
-    {
-      tx_cfg[i][0] = 0xFE;
-      tx_cfg[i][1] = 0x00 ; 
-      tx_cfg[i][2] = 0x00 ;
-      tx_cfg[i][3] = 0x00 ; 
-      tx_cfg[i][4] = 0x00 ;
-      tx_cfg[i][5] = 0x00 ;
-    }
   while(1)
   {	
-    LTC6804_wrcfg(TOTAL_IC,tx_cfg);
     LTC6804_adcv();
     rdError = LTC6804_rdcv(0, TOTAL_IC, cell_codes);
     if(rdError == -1){
