@@ -4,9 +4,9 @@
 #include <bcm2835.h>
 #include "ltc68042_bcm.h"
 
-const int TOTAL_IC = 1;
 uint16_t cell_codes[TOTAL_IC][12];
 uint8_t tx_cfg[TOTAL_IC][6];
+const int TOTAL_IC = 1;
 int rdError = 0;
 
 int main(int argc, char **argv)
