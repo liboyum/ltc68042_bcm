@@ -23,19 +23,21 @@ int main(int argc, char **argv)
       printf("bcm2835_spi_begin failed. Are you running as root??\n");
       return 1;
     }
-	
+  while(1)
+  {	
     LTC6804_initialize();
     LTC6804_adcv();
     rdError = LTC6804_rdcv(0, TOTAL_IC, cell_codes);
     if(rdError == -1){
-		printf("A PEC error was detected in the received data\n");
+	printf("A PEC error was detected in the received data\n");
+	break;
     }
     else{
-		for(int i=0; i<12; i++)
-		{
-			printf("The voltage is %f\n", cell_codes[TOTAL_IC][i]*0.0001);
-		}
+	for(int i=0; i<12; i++)
+	{
+		printf("The voltage is %f\n", cell_codes[TOTAL_IC][i]*0.0001);
+	}
     }
-
+  }
     return 0;
 }
