@@ -23,9 +23,9 @@ int main(int argc, char **argv)
       printf("bcm2835_spi_begin failed. Are you running as root??\n");
       return 1;
     }
+    LTC6804_initialize();
   while(1)
   {	
-    LTC6804_initialize();
     LTC6804_adcv();
     rdError = LTC6804_rdcv(0, TOTAL_IC, cell_codes);
     if(rdError == -1){
@@ -38,6 +38,7 @@ int main(int argc, char **argv)
 		printf("The voltage is %f\n", cell_codes[TOTAL_IC][i]*0.0001);
 	}
     }
+    bcm2835_delay(500);
   }
     return 0;
 }
