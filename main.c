@@ -5,11 +5,12 @@
 #include "ltc68042_bcm.h"
 
 #define TOTAL_IC 1
-uint16_t cell_codes[TOTAL_IC][12];
+
 
 int main(int argc, char **argv)
 {
     int rdError = 0;
+    uint16_t cell_codes[TOTAL_IC][12];
     printf("Raspberry Pi LTC6804-2 voltage test program\n");
     if (!bcm2835_init())
     {
