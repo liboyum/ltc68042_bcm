@@ -825,10 +825,11 @@ void spi_write_array(uint8_t len, // Option: Number of bytes to be written on th
 					 uint8_t data[] //Array of bytes to be written on the SPI port
 					 )
 {
-  for(uint8_t i = 0; i < len; i++)
-  {
-     bcm2835_spi_transfer(data[i]);
-  }
+  bcm2835_spi_writenb(data,len);
+//   for(uint8_t i = 0; i < len; i++)
+//   {
+//      bcm2835_spi_transfer(data[i]);
+//   }
 }
 /*!
  \brief Writes and read a set number of bytes using the SPI port.
@@ -846,10 +847,11 @@ void spi_write_read(uint8_t tx_Data[],//array of data to be written on SPI port
 					uint8_t rx_len //Option: number of bytes to be read from the SPI port
 					)
 {
-  for(uint8_t i = 0; i < tx_len; i++)
-  {
-     bcm2835_spi_transfer(tx_Data[i]);
-  }
+  bcm2835_spi_transfern(tx_Data,tx_len);
+//   for(uint8_t i = 0; i < tx_len; i++)
+//   {
+//      bcm2835_spi_transfer(tx_Data[i]);
+//   }
 
   for(uint8_t i = 0; i < rx_len; i++)
   {
