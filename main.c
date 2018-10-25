@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 	  voltage[i] = cell_codes[TOTAL_IC][i];
 	}
     }
-    printf("%f %f %f\n",voltage[1]*0.0001,voltage[2]*0.0001,voltage[3]*0.0001);
+    printf("%f %f %f\n",voltage[1]*0.00001,voltage[2]*0.00001,voltage[3]*0.00001);
     bcm2835_delay(500);
   }
     return 0;
