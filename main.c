@@ -9,6 +9,7 @@ uint16_t cell_codes[TOTAL_IC][12];
 
 int main(int argc, char **argv)
 {
+    uint16_t voltage[12];
     int rdError = 0;
     printf("Raspberry Pi LTC6804-2 voltage test program\n");
     if (!bcm2835_init())
@@ -33,7 +34,8 @@ int main(int argc, char **argv)
     else{
 	for(int i=0; i<12; i++)
 	{
-	  printf("The voltage is %f\n", cell_codes[i]);
+	  voltage[i] = cell_codes[TOTAL_IC][i];
+	  printf("%f\n",voltage[i]*0.0001);
 	}
     }
     bcm2835_delay(500);
