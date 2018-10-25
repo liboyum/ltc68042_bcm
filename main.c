@@ -5,12 +5,11 @@
 #include "ltc68042_bcm.h"
 
 #define TOTAL_IC 1
-
+uint16_t cell_codes[TOTAL_IC][12];
 
 int main(int argc, char **argv)
 {
     int rdError = 0;
-    uint16_t cell_codes[TOTAL_IC][12];
     printf("Raspberry Pi LTC6804-2 voltage test program\n");
     if (!bcm2835_init())
     {
@@ -26,7 +25,7 @@ int main(int argc, char **argv)
   while(1)
   {	
     LTC6804_adcv();
-    rdError = LTC6804_rdcv(0, TOTAL_IC, cell_codes);
+    rdError = LTC6804_rdcv(1, TOTAL_IC, cell_codes);
     if(rdError == -1){
 	printf("A PEC error was detected in the received data\n");
 	break;
