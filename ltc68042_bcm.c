@@ -6,31 +6,15 @@
 
 #define output_low(PIN) bcm2835_gpio_write(PIN, LOW)
 #define output_high(PIN) bcm2835_gpio_write(PIN, HIGH)
-/*
-   ADC control Variables for LTC6804
-*/
- 
 
-
-/*!
-  6804 conversion command variables.  
-*/
 uint8_t ADCV[2]; //!< Cell Voltage conversion command.
 uint8_t ADAX[2]; //!< GPIO conversion command.
 
-
-/*!
-  \brief This function will initialize all 6804 variables and the SPI port.
-
-  input: 
-  ------
-  IC: number of ICs being controlled. The address of the ICs in a LTC6804-2 network will start at 0 and continue in an ascending order.
-*/
 void LTC6804_initialize()
 {
   bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);      // The default
-  bcm2835_spi_setDataMode(BCM2835_SPI_MODE3);                   // The default
-  bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_65536); // The default
+  bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);                   // The default
+  bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_4096); // The default
   bcm2835_spi_chipSelect(BCM2835_SPI_CS0);                      // The default
   bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
   set_adc(MD_NORMAL,DCP_DISABLED,CELL_CH_ALL,AUX_CH_ALL);
@@ -843,7 +827,7 @@ void spi_write_array(uint8_t len, // Option: Number of bytes to be written on th
 {
   for(uint8_t i = 0; i < len; i++)
   {
-     bcm2835_spi_write(data[i]);
+     bcm2835_spi_transfer(data[i]);
   }
 }
 /*!
@@ -858,20 +842,18 @@ void spi_write_array(uint8_t len, // Option: Number of bytes to be written on th
 
 void spi_write_read(uint8_t tx_Data[],//array of data to be written on SPI port 
 					uint8_t tx_len, //length of the tx data arry
-					uint8_t rx_data[],//Input: array that will store the data read by the SPI port
+					uint8_t *rx_data,//Input: array that will store the data read by the SPI port
 					uint8_t rx_len //Option: number of bytes to be read from the SPI port
 					)
 {
   for(uint8_t i = 0; i < tx_len; i++)
   {
-   bcm2835_spi_write(tx_Data[i]);
-
+     bcm2835_spi_transfer(tx_Data[i]);
   }
 
   for(uint8_t i = 0; i < rx_len; i++)
   {
-    rx_data[i] = bcm2835_spi_transfer(0xFF);
-//printf("Read back from SPI: 0x%02X.\n", rx_data[i]);
+     rx_data[i] = bcm2835_spi_transfer(0xFF);
   }
 }
 

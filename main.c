@@ -6,7 +6,6 @@
 
 #define TOTAL_IC 1
 
-void print_voltage();
 uint16_t cell_codes[TOTAL_IC][12];
 uint16_t aux_codes[TOTAL_IC][6];
 int rdError = 0;
@@ -27,29 +26,16 @@ int main(int argc, char **argv)
 	
     LTC6804_initialize();
     LTC6804_adcv();
-    LTC6804_adax();
     rdError = LTC6804_rdcv(0, TOTAL_IC, cell_codes);
-    LTC6804_rdaux(0, TOTAL_IC, aux_codes);
     if(rdError == -1){
-	printf("A PEC error was detected in the received data\n");
+		printf("A PEC error was detected in the received data\n");
     }
     else{
-	print_voltage();
+		for(int i=0; i<12; i++)
+		{
+			printf("The voltage is %f\n", cell_codes[TOTAL_IC][i]*0.0001);
+		}
     }
-    bcm2835_spi_end();
-    bcm2835_close();
-    return 0;
-}
 
-void print_voltage()
-{
-    for(int i=0; i<12; i++)
-    {
-       printf("The voltage is %.4f\n", cell_codes[TOTAL_IC][i]*0.0001);
-     }
-    printf("%%%%%%%%%%%\n");
-    for(int i=0; i<6; i++)
-    {
-       printf("The voltage is %.4f\n", aux_codes[TOTAL_IC][i]*0.0001);
-     }
+    return 0;
 }
