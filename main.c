@@ -43,5 +43,7 @@ int main(int argc, char **argv)
     }
     bcm2835_delay(500);
   }
-    return 0;
+  bcm2835_spi_end();
+  bcm2835_close();
+  return 0;
 }
