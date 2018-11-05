@@ -33,14 +33,11 @@ int main()
 	uint8_t rdcmd1 = 0x04;
 	uint8_t pec2 = 0x07;
 	uint8_t pec3 = 0xc2;
-	bcm2835_spi_transfer(rdcmd0);
-	bcm2835_spi_transfer(rdcmd1);
+	uint8_t cell_codes[2];
+	cell_codes[0] = bcm2835_spi_transfer(rdcmd0);
+	cell_codes[1] = bcm2835_spi_transfer(rdcmd1);
 	bcm2835_spi_transfer(pec2);
 	bcm2835_spi_transfer(pec3);
-	
-	uint8_t cell_data[2];
-	cell_data[0] = bcm2835_spi_transfer(0xFF);
-	cell_data[1] = bcm2835_spi_transfer(0xFF);
 	
 	printf("%f\n", cell_data[0]);
 	printf("%f\n", cell_data[1]);
