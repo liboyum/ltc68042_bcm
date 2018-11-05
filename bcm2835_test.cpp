@@ -28,7 +28,7 @@ int main()
 	// bcm2835_spi_transfer(comm1);
 	// bcm2835_spi_transfer(pec0);
 	// bcm2835_spi_transfer(pec1);
-	char cmd[] = {0x03,0x60,0xf4,0x6c};
+	uint8_t cmd[] = {0x03,0x60,0xf4,0x6c};
 	bcm2835_spi_writenb(cmd,sizeof(cmd));
 	//RDCV command for cell group A
 	uint8_t rdcmd0 = 0x80;
