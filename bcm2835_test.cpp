@@ -51,7 +51,7 @@ int main()
 	cell_data[6] = bcm2835_spi_transfer(0xFF);
 	cell_data[7] = bcm2835_spi_transfer(0xFF);
 	uint16_t cell_codes[3];
-	cell_codes[0] = cell_data[0] + (cell_data[1]<<8);
+	cell_codes[0] = (cell_data[0]>>8) + (cell_data[1]);
 	cell_codes[1] = cell_data[2] + (cell_data[3]<<8);
 	cell_codes[2] = cell_data[4] + (cell_data[5]<<8);
 	printf("%d\n", cell_codes[0]);
