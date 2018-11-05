@@ -30,11 +30,11 @@ int main()
 	// bcm2835_spi_transfer(pec1);
 	char cmd[] = {0x03,0x60,0xf4,0x6c};
 	bcm2835_spi_transfern(cmd,sizeof(cmd));
-	//RDCV command for cell
-	uint8_t rdcmd0 = 0x00;
+	//RDCV command for cell group A
+	uint8_t rdcmd0 = 0x80;
 	uint8_t rdcmd1 = 0x04;
-	uint8_t pec2 = 0x07;
-	uint8_t pec3 = 0xc2;
+	uint8_t pec2 = 0x77;
+	uint8_t pec3 = 0xd6;
 
 	bcm2835_spi_transfer(rdcmd0);
 	bcm2835_spi_transfer(rdcmd1);
@@ -50,11 +50,13 @@ int main()
 	cell_data[5] = bcm2835_spi_transfer(0xFF);
 	cell_data[6] = bcm2835_spi_transfer(0xFF);
 	cell_data[7] = bcm2835_spi_transfer(0xFF);
-	
-	printf("%d\n", cell_data[0]);
-	printf("%d\n", cell_data[1]);
-	printf("%d\n", cell_data[2]);
-	printf("%d\n", cell_data[3]);
+	uint16_t cell_codes[3];
+	cell_codes[0] = cell_data[0] + (cell_data[1]<<8);
+	cell_codes[1] = cell_data[2] + (cell_data[3]<<8);
+	cell_codes[2] = cell_data[4] + (cell_data[5]<<8);
+	printf("%d\n", cell_codes[0]);
+	printf("%d\n", cell_codes[1]);
+	printf("%d\n", cell_codes[2]);
 	
 	bcm2835_spi_end();
 	bcm2835_close();
