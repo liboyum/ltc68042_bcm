@@ -18,7 +18,7 @@ int main()
     	bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);                   // The default
     	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_256);   // The default
     	bcm2835_spi_chipSelect(BCM2835_SPI_CS0);                      // The default
-    	bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
+    	bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, HIGH);      // the default
 	//ADCV command for all cell 
 	uint8_t comm0 = 0x03;
 	uint8_t comm1 = 0x60;
