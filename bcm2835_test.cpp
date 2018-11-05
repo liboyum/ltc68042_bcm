@@ -30,26 +30,26 @@ int main()
 	// bcm2835_spi_transfer(pec1);
 	char cmd[] = {0x03,0x60,0xf4,0x6c};
 	bcm2835_spi_transfern(cmd,sizeof(cmd));
-	//RDCV command for cell 1&7
+	//RDCV command for cell
 	uint8_t rdcmd0 = 0x00;
 	uint8_t rdcmd1 = 0x04;
 	uint8_t pec2 = 0x07;
 	uint8_t pec3 = 0xc2;
-	uint16_t cell_data[4];
-	cell_data[0] = bcm2835_spi_transfer(rdcmd0);
-	cell_data[1] = bcm2835_spi_transfer(rdcmd1);
-	cell_data[2] = bcm2835_spi_transfer(pec2);
-	cell_data[3] = bcm2835_spi_transfer(pec3);
+
+	bcm2835_spi_transfer(rdcmd0);
+	bcm2835_spi_transfer(rdcmd1);
+	bcm2835_spi_transfer(pec2);
+	bcm2835_spi_transfer(pec3);
 	
-	// uint8_t cell_data[8];
-	// cell_data[0] = bcm2835_spi_transfer(0xFF);
-	// cell_data[1] = bcm2835_spi_transfer(0xFF);
-	// cell_data[2] = bcm2835_spi_transfer(0xFF);
-	// cell_data[3] = bcm2835_spi_transfer(0xFF);
-	// cell_data[4] = bcm2835_spi_transfer(0xFF);
-	// cell_data[5] = bcm2835_spi_transfer(0xFF);
-	// cell_data[6] = bcm2835_spi_transfer(0xFF);
-	// cell_data[7] = bcm2835_spi_transfer(0xFF);
+	uint8_t cell_data[8];
+	cell_data[0] = bcm2835_spi_transfer(0xFF);
+	cell_data[1] = bcm2835_spi_transfer(0xFF);
+	cell_data[2] = bcm2835_spi_transfer(0xFF);
+	cell_data[3] = bcm2835_spi_transfer(0xFF);
+	cell_data[4] = bcm2835_spi_transfer(0xFF);
+	cell_data[5] = bcm2835_spi_transfer(0xFF);
+	cell_data[6] = bcm2835_spi_transfer(0xFF);
+	cell_data[7] = bcm2835_spi_transfer(0xFF);
 	
 	printf("%d\n", cell_data[0]);
 	printf("%d\n", cell_data[1]);
