@@ -22,24 +22,23 @@ int main()
 	//ADCV command for all cell 
 	uint8_t comm0 = 0x03;
 	uint8_t comm1 = 0x60;
-	uint8_t pec0 = 0xf4;
-	uint8_t pec1 = 0x6c;
-	bcm2835_spi_write(comm0);
-	bcm2835_spi_write(comm1);
-	bcm2835_spi_write(pec0);
-	bcm2835_spi_write(pec1);
-	//uint8_t cmd[] = {0x03,0x60,0xf4,0x6c};
-	//bcm2835_spi_writenb(cmd,sizeof(cmd));
+	uint8_t pec0 = 0xF4;
+	uint8_t pec1 = 0x6C;
+	bcm2835_spi_transfer(comm0);
+	bcm2835_spi_transfer(comm1);
+	bcm2835_spi_transfer(pec0);
+	bcm2835_spi_transfer(pec1);
+
 	//RDCV command for cell group A
 	uint8_t rdcmd0 = 0x80;
 	uint8_t rdcmd1 = 0x04;
 	uint8_t pec2 = 0x77;
-	uint8_t pec3 = 0xd6;
+	uint8_t pec3 = 0xD6;
 
-	bcm2835_spi_write(rdcmd0);
-	bcm2835_spi_write(rdcmd1);
-	bcm2835_spi_write(pec2);
-	bcm2835_spi_write(pec3);
+	bcm2835_spi_transfer(rdcmd0);
+	bcm2835_spi_transfer(rdcmd1);
+	bcm2835_spi_transfer(pec2);
+	bcm2835_spi_transfer(pec3);
 	
 	uint8_t cell_data[8];
 	cell_data[0] = bcm2835_spi_transfer(0x00);
