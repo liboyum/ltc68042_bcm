@@ -19,17 +19,17 @@ int main()
     	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_256);   // The default
     	bcm2835_spi_chipSelect(BCM2835_SPI_CS0);                      // The default
     	bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
-	//ADCV command for cell 1&7
-	// uint8_t comm0 = 0x03;
-	// uint8_t comm1 = 0x61;
-	// uint8_t pec0 = 0x7f;
-	// uint8_t pec1 = 0x5e;
-	// bcm2835_spi_transfer(comm0);
-	// bcm2835_spi_transfer(comm1);
-	// bcm2835_spi_transfer(pec0);
-	// bcm2835_spi_transfer(pec1);
-	uint8_t cmd[] = {0x03,0x60,0xf4,0x6c};
-	bcm2835_spi_writenb(cmd,sizeof(cmd));
+	//ADCV command for all cell 
+	uint8_t comm0 = 0x03;
+	uint8_t comm1 = 0x60;
+	uint8_t pec0 = 0xf4;
+	uint8_t pec1 = 0x6c;
+	bcm2835_spi_write(comm0);
+	bcm2835_spi_write(comm1);
+	bcm2835_spi_write(pec0);
+	bcm2835_spi_write(pec1);
+	//uint8_t cmd[] = {0x03,0x60,0xf4,0x6c};
+	//bcm2835_spi_writenb(cmd,sizeof(cmd));
 	//RDCV command for cell group A
 	uint8_t rdcmd0 = 0x80;
 	uint8_t rdcmd1 = 0x04;
