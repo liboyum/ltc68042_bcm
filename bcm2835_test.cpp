@@ -29,17 +29,17 @@ int main()
 	// bcm2835_spi_transfer(pec0);
 	// bcm2835_spi_transfer(pec1);
 	char cmd[] = {0x03,0x60,0xf4,0x6c};
-	bcm2835_spi_transfern(cmd,sizeof(cmd));
+	bcm2835_spi_writenb(cmd,sizeof(cmd));
 	//RDCV command for cell group A
 	uint8_t rdcmd0 = 0x80;
 	uint8_t rdcmd1 = 0x04;
 	uint8_t pec2 = 0x77;
 	uint8_t pec3 = 0xd6;
 
-	bcm2835_spi_transfer(rdcmd0);
-	bcm2835_spi_transfer(rdcmd1);
-	bcm2835_spi_transfer(pec2);
-	bcm2835_spi_transfer(pec3);
+	bcm2835_spi_write(rdcmd0);
+	bcm2835_spi_write(rdcmd1);
+	bcm2835_spi_write(pec2);
+	bcm2835_spi_write(pec3);
 	
 	uint8_t cell_data[8];
 	cell_data[0] = bcm2835_spi_transfer(0xFF);
