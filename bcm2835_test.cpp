@@ -53,6 +53,9 @@ int main()
 	cell_codes[0] = cell_data[0]>>8 + cell_data[1];
 	cell_codes[1] = cell_data[2] + (cell_data[3]<<8);
 	cell_codes[2] = cell_data[4] + (cell_data[5]<<8);
+	printf("%d\n", cell_data[0]);
+	printf("%d\n", cell_data[0]);
+	
 	printf("%d\n", cell_codes[0]);
 	printf("%d\n", cell_codes[1]);
 	printf("%d\n", cell_codes[2]);
