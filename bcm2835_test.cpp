@@ -57,7 +57,7 @@ int main()
 	printf("%d\n", cell_codes[0]);
 	printf("%d\n", cell_codes[1]);
 	printf("%d\n", cell_codes[2]);
-	
+	printf("%d\n", cell_codes[3]);
 	bcm2835_spi_end();
 	bcm2835_close();
 	return 0;
