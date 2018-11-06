@@ -40,14 +40,15 @@ int main()
 	bcm2835_spi_transfer(pec3);
 	
 	uint8_t cell_data[8];
-	cell_data[0] = bcm2835_spi_transfer(0x00);
-	cell_data[1] = bcm2835_spi_transfer(0x00);
-	cell_data[2] = bcm2835_spi_transfer(0x00);
-	cell_data[3] = bcm2835_spi_transfer(0x00);
-	cell_data[4] = bcm2835_spi_transfer(0x00);
-	cell_data[5] = bcm2835_spi_transfer(0x00);
-	cell_data[6] = bcm2835_spi_transfer(0x00);
-	cell_data[7] = bcm2835_spi_transfer(0x00);
+	unit8_t buf = 0xFF;
+	cell_data[0] = bcm2835_spi_transfer(buf);
+	cell_data[1] = bcm2835_spi_transfer(buf);
+	cell_data[2] = bcm2835_spi_transfer(buf);
+	cell_data[3] = bcm2835_spi_transfer(buf);
+	cell_data[4] = bcm2835_spi_transfer(buf);
+	cell_data[5] = bcm2835_spi_transfer(buf);
+	cell_data[6] = bcm2835_spi_transfer(buf);
+	cell_data[7] = bcm2835_spi_transfer(buf);
 	
 	uint16_t cell_codes[3];
 	cell_codes[0] = cell_data[0] + (cell_data[1]<<8);
