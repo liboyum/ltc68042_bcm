@@ -22,9 +22,19 @@ int main()
     	bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
 	//Write configuration register
 	uint8_t tx_cfg[6] = {0xFE,0x00,0x00,0x00,0x00,0x00};
-	char wr_cfg[] = {0x80,0x01,0x4d,0x7a,0xfe,0x00,0x00,0x00,0x00,0x00,0x37,0x32};
+	char wr_cfg[] = {0x00,0x01,0x3d,0x6e,0xfe,0x00,0x00,0x00,0x00,0x00,0x37,0x32};
 	bcm2835_spi_transfern(wr_cfg,4);
 	bcm2835_spi_transfern(wr_cfg,sizeof(wr_cfg));
+
+	//RDCV command for cell group A
+	uint8_t rdcmd0 = 0x00;
+	uint8_t rdcmd1 = 0x04;
+	uint8_t pec2 = 0x07;
+	uint8_t pec3 = 0xc2;
+	bcm2835_spi_transfer(rdcmd0);
+	bcm2835_spi_transfer(rdcmd1);
+	bcm2835_spi_transfer(pec2);
+	bcm2835_spi_transfer(pec3);
 	
 	//ADCV command for all cell 
 	uint8_t comm0 = 0x03;
@@ -35,16 +45,6 @@ int main()
 	bcm2835_spi_transfer(comm1);
 	bcm2835_spi_transfer(pec0);
 	bcm2835_spi_transfer(pec1);
-
-	//RDCV command for cell group A
-	uint8_t rdcmd0 = 0x80;
-	uint8_t rdcmd1 = 0x04;
-	uint8_t pec2 = 0x77;
-	uint8_t pec3 = 0xD6;
-	bcm2835_spi_transfer(rdcmd0);
-	bcm2835_spi_transfer(rdcmd1);
-	bcm2835_spi_transfer(pec2);
-	bcm2835_spi_transfer(pec3);
 	
 	uint8_t cell_data[8];
 	uint8_t buf = 0xFF;
