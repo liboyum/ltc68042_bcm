@@ -20,6 +20,12 @@ int main()
     	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_256);   // The default
     	bcm2835_spi_chipSelect(BCM2835_SPI_CS0);                      // The default
     	bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
+	//Write configuration register
+	uint8_t tx_cfg[6] = {0xFE,0x00,0x00,0x00,0x00,0x00};
+	uint8_t wr_cfg[12] = {0x80,0x01,0x4d,0x7a,0xfe,0x00,0x00,0x00,0x00,0x00,0x37,0x32};
+	bcm2835_spi_transfern(wr_cfg,4);
+	bcm2835_spi_transfern(wr_cfg,sizeof(wr_cfg));
+	
 	//ADCV command for all cell 
 	uint8_t comm0 = 0x03;
 	uint8_t comm1 = 0x60;
