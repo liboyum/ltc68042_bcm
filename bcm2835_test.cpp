@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <bcm2835.h>
+using namespace std;
 
 int main()
 {
@@ -40,7 +41,7 @@ int main()
 	bcm2835_spi_transfer(pec3);
 	
 	uint8_t cell_data[8];
-	unit8_t buf = 0xFF;
+	uint8_t buf = 0xFF;
 	cell_data[0] = bcm2835_spi_transfer(buf);
 	cell_data[1] = bcm2835_spi_transfer(buf);
 	cell_data[2] = bcm2835_spi_transfer(buf);
