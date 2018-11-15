@@ -3,7 +3,7 @@
 #include <bcm2835.h>
 using namespace std;
 
-int main()
+int main(int argc, char ** argv)
 {
 	if(!bcm2835_init())
 	{
@@ -40,22 +40,30 @@ int main()
 	uint8_t rdcmd0 = 0x00;
 	uint8_t rdcmd1 = 0x04;
 	uint8_t pec2 = 0x07;
-	uint8_t pec3 = 0xc2;
+	uint8_t pec3 = 0xC2;
 	bcm2835_spi_transfer(rdcmd0);
 	bcm2835_spi_transfer(rdcmd1);
 	bcm2835_spi_transfer(pec2);
 	bcm2835_spi_transfer(pec3);
 	
-	uint8_t cell_data[8];
-	uint8_t buf = 0xFF;
-	cell_data[0] = bcm2835_spi_transfer(buf);
-	cell_data[1] = bcm2835_spi_transfer(buf);
-	cell_data[2] = bcm2835_spi_transfer(buf);
-	cell_data[3] = bcm2835_spi_transfer(buf);
-	cell_data[4] = bcm2835_spi_transfer(buf);
-	cell_data[5] = bcm2835_spi_transfer(buf);
-	cell_data[6] = bcm2835_spi_transfer(buf);
-	cell_data[7] = bcm2835_spi_transfer(buf);
+	const uint8_t NUM_RX_BYT = 8;
+	uint8_t *cell_data;
+	cell_data = (uint8_t *)malloc(NUM_RX_BYT * sizeof(uint8_t));
+	for (uint8_t i = 0; i < NUM_RX_BYT; i++)
+	{
+		cell_data[i] = (uint8_t)bcm2835_spi_transfer(0xFF);
+	}
+	
+// 	uint8_t cell_data[8];
+// 	uint8_t buf = 0xFF;
+// 	cell_data[0] = bcm2835_spi_transfer(buf);
+// 	cell_data[1] = bcm2835_spi_transfer(buf);
+// 	cell_data[2] = bcm2835_spi_transfer(buf);
+// 	cell_data[3] = bcm2835_spi_transfer(buf);
+// 	cell_data[4] = bcm2835_spi_transfer(buf);
+// 	cell_data[5] = bcm2835_spi_transfer(buf);
+// 	cell_data[6] = bcm2835_spi_transfer(buf);
+// 	cell_data[7] = bcm2835_spi_transfer(buf);
 	
 	uint16_t cell_codes[3];
 	cell_codes[0] = cell_data[0] + (cell_data[1]<<8);
